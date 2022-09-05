@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "In this project, I will be making the most challenging app yet. It will be a To-Do List with the ability to create projects to group different To-Do items together, as well as separate to-dos by date, and week and display them accordingly. I will also need to learn how to use localstorage to store user's items on their to do list even if they refresh. This is going to be a very challenging project, but I am excited to learn a ton along the way.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdp7zt/ToDoList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdp7zt/ToDoList/issues"
+  },
+  "homepage": "https://github.com/gdp7zt/ToDoList#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
