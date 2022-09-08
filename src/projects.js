@@ -26,9 +26,9 @@ export default class project{
 
         const form = document.createElement('form');
         form.innerHTML = ` 
-            <input type = 'text' class='toDoTitle' placeholder='To Do Title'>
-            <input type = 'text' class='toDoDescription' placeholder='To Do Description'>
-            <input type = 'date' class='toDoDate'>
+            <input type = 'text' class='toDoTitle' placeholder='To Do Title' required>
+            <input type = 'text' class='toDoDescription' placeholder='To Do Description' required>
+            <input type = 'date' class='toDoDate' required>
             <select id = 'priority' name = 'priority' class='toDoPriority'>
                 <option value='high'>High</option>
                 <option value='medium'>Medium</option>

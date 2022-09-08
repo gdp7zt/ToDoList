@@ -210,8 +210,17 @@ body{
     width: 100%;
 }
 
+.toDoSection > button{
+    width: 15%;
+}
+
 #toggleGroup{
     justify-content: space-around;
+}
+
+#toggleGroup > div{
+    width: 50%;
+    text-align: center;
 }
 
 .footer{
