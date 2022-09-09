@@ -6,7 +6,6 @@ export default class toDo{
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.isDone = false;
     }
 
     displayToDo(projectName){
@@ -94,7 +93,7 @@ export default class toDo{
 
                 this.title = title.value;
                 this.description = description.value;
-                this.date = date.value;
+                this.dueDate = date.value;
                 this.priority = priority.value;
                 
                 const body = document.querySelector('.body');
@@ -104,6 +103,8 @@ export default class toDo{
                 const header = document.createElement('h2');
                 header.innerHTML = projectName.title;
                 body.appendChild(header);
+
+                localStorage.setItem('projects', JSON.stringify(projects));
 
                 projectName.loadToDos();
 

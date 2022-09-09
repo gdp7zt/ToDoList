@@ -54,6 +54,7 @@ export default class project{
         const item = new toDo(title.value, description.value, date.value, priority.value);
         if(this.title !== 'Main') this.toDos.push(item);
         projects[0].toDos.push(item);
+        localStorage.setItem('projects', JSON.stringify(projects));
 
         let form = document.querySelector('.toDoForm');
         form.remove();
@@ -74,6 +75,7 @@ export default class project{
         for(let i = 0; i< this.toDos.length; i++){
             if(this.toDos[i].title === name){
                 this.toDos.splice(i, 1);
+                localStorage.setItem('projects', JSON.stringify(projects));
             }
         }
 
@@ -101,8 +103,6 @@ export function createSidebarItem(title, imgName){
     mainTitle.innerHTML = `<img src=\'imgs/${imgName}\'>${mainProject.title}`;
     nav.appendChild(mainTitle);
     projects.push(mainProject);
-
-    return mainProject;
 }
 
 function createNewProject(){
@@ -145,11 +145,13 @@ function createNewProject(){
         nav.appendChild(newProjectButton);
         let newProject = new project(`${title}`);
         projects.push(newProject);
+        localStorage.setItem('projects', JSON.stringify(projects));
 
         removeProjectButton.addEventListener('click', () => {
             const removeWholeProject = document.querySelectorAll('.sidebarButton');
             projects.splice(parseInt(removeProjectButton.getAttribute('data-v'))+3, 1);
             removeWholeProject[parseInt(removeProjectButton.getAttribute('data-v'))+3].remove();
+            localStorage.setItem('projects', JSON.stringify(projects));
 
             setData();
         });
@@ -191,7 +193,7 @@ function loadProject(){
             const header = document.createElement('h2');
             header.innerHTML = projects[parseInt(element.getAttribute('data-v'))].title;
             body.appendChild(header);
-
+            
             projects[parseInt(element.getAttribute('data-v'))].loadToDos();
 
             projects[parseInt(element.getAttribute('data-v'))].createButton();
@@ -209,5 +211,37 @@ function setData(){
     for(let i = 0; i < secondItems.length; i++){
         secondItems[i].setAttribute('data-v', i);
     }
+}
+
+export function loadProjectsStorage(importedProject, i){
+        let title = importedProject.title;
+        const nav = document.querySelector('.nav');
+
+        const newProjectButton = document.createElement('button');
+        
+        newProjectButton.classList.add('sidebarButton');
+        newProjectButton.innerHTML = `<img src=\'imgs/project-icon.svg\'><div>${title}</div>`;
+        newProjectButton.setAttribute('data-v', i);
+
+        const removeProjectButton = document.createElement('button');
+        removeProjectButton.classList.add('removeProjectButton');
+        removeProjectButton.setAttribute('data-v', i-3);
+        removeProjectButton.innerText = 'X';
+
+        newProjectButton.appendChild(removeProjectButton);
+        nav.appendChild(newProjectButton);
+
+        let newProject = new project(`${title}`);
+        newProject.toDos = importedProject.toDos;
+
+        projects[i] = newProject;
+
+        removeProjectButton.addEventListener('click', () => {
+            const removeWholeProject = document.querySelectorAll('.sidebarButton');
+            projects.splice(parseInt(removeProjectButton.getAttribute('data-v'))+3, 1);
+            removeWholeProject[parseInt(removeProjectButton.getAttribute('data-v'))+3].remove();
+
+            setData();
+        });
 }
 export{projects};
