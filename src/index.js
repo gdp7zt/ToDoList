@@ -1,6 +1,6 @@
 import load from './pageload';
 import toDo from './toDo.js';
-import project, {createSidebarItem, projectButton, projects, loadProjectsStorage} from './projects.js';
+import project, {createSidebarItem, projectButton, projects, loadProjectsStorage, eventloaders} from './projects.js';
 
 load();
 function sidebarLogic(){

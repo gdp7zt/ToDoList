@@ -147,15 +147,14 @@ function createNewProject(){
         projects.push(newProject);
         localStorage.setItem('projects', JSON.stringify(projects));
 
-        removeProjectButton.addEventListener('click', () => {
-            const removeWholeProject = document.querySelectorAll('.sidebarButton');
-            projects.splice(parseInt(removeProjectButton.getAttribute('data-v'))+3, 1);
-            removeWholeProject[parseInt(removeProjectButton.getAttribute('data-v'))+3].remove();
-            localStorage.setItem('projects', JSON.stringify(projects));
+        removeProjectButton.addEventListener('click', () =>{
+                const removeWholeProject = document.querySelectorAll('.sidebarButton');
+                projects.splice(parseInt(removeProjectButton.getAttribute('data-v'))+3, 1);
+                removeWholeProject[parseInt(removeProjectButton.getAttribute('data-v'))+3].remove();
+                localStorage.setItem('projects', JSON.stringify(projects));
+                setData();
+            });
 
-            setData();
-        });
-        
         projectButton();
     });
 }
@@ -240,8 +239,10 @@ export function loadProjectsStorage(importedProject, i){
             const removeWholeProject = document.querySelectorAll('.sidebarButton');
             projects.splice(parseInt(removeProjectButton.getAttribute('data-v'))+3, 1);
             removeWholeProject[parseInt(removeProjectButton.getAttribute('data-v'))+3].remove();
+            localStorage.setItem('projects', JSON.stringify(projects));
 
             setData();
         });
 }
+
 export{projects};
